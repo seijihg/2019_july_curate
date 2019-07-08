@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Curate</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <%= link_to('Home', index_path ) %>
+  <%= link_to('About') %>
+  <%= link_to('Login' ) %>
+  <%= link_to('Sign up', signup_path) %>
+
+  <% if flash[:errors] %>
+    <% flash[:errors].each do |error| %>
+        <p class="error"><%= error %></p>
+    <% end %>
+  <% end %>
+
+  <%= yield %>
+  </body>
+</html>

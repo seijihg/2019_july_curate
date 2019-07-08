@@ -1,0 +1,8 @@
+<h1>Exhibitions</h1>
+<ul>
+<% @exhibitions.each do |exhibition| %>
+    <li><%= exhibition.title %> <%= exhibition.likes_count %></li>
+<% end %>
+</ul>
+
+
