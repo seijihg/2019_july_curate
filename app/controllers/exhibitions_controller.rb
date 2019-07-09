@@ -1,6 +1,6 @@
 class ExhibitionsController < ApplicationController
     helper_method :most_likes
-    
+
     def index
         if !params[:exhibition].nil?
             if params[:exhibition].each {|hash| hash}.all? {|k, v| v == ""}
@@ -14,7 +14,7 @@ class ExhibitionsController < ApplicationController
                     @exhibitions = empty
                 end
             end
-        else 
+        else
             @exhibitions = Exhibition.all
         end
         @locations = Exhibition.locations
@@ -32,6 +32,6 @@ class ExhibitionsController < ApplicationController
     end
 
     def most_likes(array)
-        array.all.sort { |exhibition| exhibition.likes.count}.reverse
+        array.sort_by { |exhibition| exhibition.likes.count}.reverse
     end
 end

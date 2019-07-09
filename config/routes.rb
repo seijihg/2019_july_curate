@@ -3,11 +3,12 @@ Rails.application.routes.draw do
 
   get "signup", to: "users#new", as: "signup"
   get "login", to: "sessions#new", as: "login"
+  post "login", to: "sessions#create"
   get "logout", to: "sessions#destroy", as: "logout"
-  
+
   resources :sessions, only: [:new, :create, :destroy]
   resources :exhibitions, only: [:index]
-  resources :users, only: [:new, :create, :show]
+  resources :users, only: [:new, :create, :show, :edit, :update]
   # resources :comment_likes
   # resources :comments
   # resources :likes
