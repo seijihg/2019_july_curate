@@ -10,10 +10,19 @@
   </head>
 
   <body>
+<nav class="navigation">
+  <div"logo_wrapper"><img src"" alt=""></div>
+  
   <%= link_to('Home', index_path ) %>
   <%= link_to('About') %>
-  <%= link_to('Login' ) %>
-  <%= link_to('Sign up', signup_path) %>
+
+  <% if current_user %>
+    Logged in as <%= current_user.full_name %>.
+    <%= link_to "Log Out", logout_path %>
+  <% else %>
+    <%= link_to "Sign Up", signup_path %> or 
+    <%= link_to "Log In", login_path %>
+  <% end %>
 
   <% if flash[:errors] %>
     <% flash[:errors].each do |error| %>

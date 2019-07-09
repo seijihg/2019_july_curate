@@ -1,8 +1,28 @@
+
+
 <h1>Exhibitions</h1>
-<ul>
-<% @exhibitions.each do |exhibition| %>
-    <li><%= exhibition.title %> <%= exhibition.likes_count %></li>
+
+<div>
+<%= form_tag(index_path, method: "get") do %>
+    <%= label_tag "Gallery"%>
+    <%= select_tag "exhibition[gallery]", options_for_select(@galleries, @selected_gal), include_blank: true %>
+    <%= label_tag "Category"%>
+    <%= select_tag "exhibition[category]", options_for_select(@categories, @selected_cat), include_blank: true %>
+    <%= label_tag "Location"%>
+    <%= select_tag "exhibition[location]", options_for_select(@locations, @selected_loc), include_blank: true %>
+
+  <%= submit_tag("Filter") %>
 <% end %>
-</ul>
+</div>
+
+
+<div class="box-container">
+<%= binding.pry %>
+<% @exhibitions.each do |exhibition| %>
+    <div class="box"><%= exhibition.title %> <%= exhibition.likes_count %>
+    <a href="https://placeholder.com"><img scr="https://viaplaceholder.com/200"></a>
+    </div>
+<% end %>
+</div>
 
 
