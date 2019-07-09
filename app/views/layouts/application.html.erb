@@ -5,19 +5,18 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
 <nav class="navigation">
-  <div"logo_wrapper"><img src"" alt=""></div>
-  
   <%= link_to('Home', index_path ) %>
   <%= link_to('About') %>
 
   <% if current_user %>
     Logged in as <%= current_user.full_name %>.
+    <%= link_to "Profile", user_path(current_user) %>
     <%= link_to "Log Out", logout_path %>
   <% else %>
     <%= link_to "Sign Up", signup_path %> or 

@@ -32,6 +32,6 @@ class ExhibitionsController < ApplicationController
     end
 
     def most_likes(array)
-        array.all.sort { |exhibition| exhibition.likes.count}.reverse
+        array.sort_by { |exhibition| exhibition.likes.count}.reverse
     end
 end
