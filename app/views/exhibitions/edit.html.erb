@@ -1,0 +1,6 @@
+<h1>Edit exhibition</h1>
+<%= render 'exhib_form' %>
+
+<%= form_tag exhibition_path(@exhibition), method: "delete" do %>
+  <%= submit_tag "Delete exhibition" %>
+<% end %>
