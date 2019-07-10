@@ -13,6 +13,23 @@
 <% end %>
 <% end %>
 
+<%= form_for @like do |f| %>
+    <%= f.hidden_field :exhibition_id, value: @exhibition.id %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+
+    <%= f.submit "Like"%><br>
+<% end %>
 <h4>Likes:<%= @exhibition.likes_count %> </h4>
 
-<h4>Exhibition comments here</h4>
+<h4>Exhibition comments</h4>
+<%= render 'comments/comment_form', comment: @comment %>
+
+<p>Exhibition comments:</p><br>
+<% @exhibition.comments.each do |comment| %>
+<br>
+<%= comment.content %><br>
+<%= comment.user_comment %>, commented at <%= comment.created_at %><br>
+<% if current_user.user_name == comment.user_comment %>
+<%= link_to("Edit comment", edit_comment_path(comment)) %>
+<% end %>
+<% end %>
