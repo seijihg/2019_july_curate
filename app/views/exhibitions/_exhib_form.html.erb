@@ -1,0 +1,16 @@
+<%= form_for @exhibition do |f| %>
+    <%= f.label "Exhibition title" %>
+    <%= f.text_field :title %><br>
+    <%= f.label "Artist" %>
+    <%= f.text_field :artist %><br>
+    <%= f.label "Category" %>
+    <%= f.select :category, options_for_select([["Select One", ""], "Contemporary", "Modern", "Classical"]) %><br>
+    <%= f.label "Gallery" %>
+    <%= f.text_field :gallery %><br>
+    <%= f.label "Location in London" %>
+    <%= f.select :location, options_for_select([["Select One", ""], "Central London", "North London", "South London", "East London", "West London"]) %><br>
+    <%= f.label "Exhibition end date" %>
+    <%= f.date_select :date_end, :order => [:day, :month, :year] %><br>
+    <%=f.hidden_field :user_id, value: current_user.id %>
+    <%= f.submit %><br>
+<% end %>

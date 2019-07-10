@@ -19,10 +19,8 @@
 <div class="box-container">
 <% exhibs = most_likes(@exhibitions) %>
 <% exhibs.each do |exhibition| %>
-    <div class="box"><%= exhibition.title %> <%= exhibition.likes_count %>
+    <div class="box"><%= link_to(exhibition.title, exhibition_path(exhibition)) %> <%= exhibition.likes_count %>
     <a href="https://placeholder.com"><img scr="https://viaplaceholder.com/200"></a>
     </div>
 <% end %>
 </div>
-
-

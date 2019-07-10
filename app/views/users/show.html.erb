@@ -1,4 +1,10 @@
 <h1><%= @user.full_name %></h1>
 
-<%= link_to "Edit Details", edit_user_path %>
+<p><%= link_to "Edit Details", edit_user_path %></p>
 
+<%= "Your exhibitions:" %>
+<% @user.exhibitions.each do |exhibition| %>
+<ul>
+<li><%= link_to(exhibition.title, exhibition_path(exhibition)) %></li>
+</ul>
+<% end %>
