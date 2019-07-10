@@ -23,10 +23,13 @@ class ExhibitionsController < ApplicationController
         @selected_loc = params[:exhibition].nil? ? "" : params[:exhibition][:location]
         @selected_cat = params[:exhibition].nil? ? "" : params[:exhibition][:category]
         @selected_gal = params[:exhibition].nil? ? "" : params[:exhibition][:gallery]
+        @like = Like.new
     end
 
     def show
       @exhibition = Exhibition.find(params[:id])
+      @comment = Comment.new
+      @like = Like.new
     end
 
     def new
@@ -35,7 +38,6 @@ class ExhibitionsController < ApplicationController
 
     def create
       exhib = Exhibition.create(exhibition_params)
-        binding.pry
       if exhib.valid?
         redirect_to exhibition_path(exhib)
       else

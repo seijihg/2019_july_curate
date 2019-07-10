@@ -19,7 +19,13 @@
 <div class="box-container">
 <% exhibs = most_likes(@exhibitions) %>
 <% exhibs.each do |exhibition| %>
-    <div class="box"><%= link_to(exhibition.title, exhibition_path(exhibition)) %> <%= exhibition.likes_count %>
+    <div class="box"><%= link_to(exhibition.title, exhibition_path(exhibition)) %><br>
+      <%= form_for @like, url: "like", method: 'post' do |f| %>
+          <%= f.hidden_field :exhibition_id, value: exhibition.id %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%= f.submit "Like"%><br>
+      <% end %>
+      <%= exhibition.likes_count %>
     <a href="https://placeholder.com"><img scr="https://viaplaceholder.com/200"></a>
     </div>
 <% end %>
