@@ -26,10 +26,13 @@ class UsersController < ApplicationController
     end
 
     def update
+        binding.pry
         @user = User.find(params[:id])
         if @user.update(user_params)
+            flash[:notice] = "Profile successfuly updated"
             redirect_to @user
         else
+            flash[:errors] = @user.errors.full_messages
             render "edit"
         end
     end

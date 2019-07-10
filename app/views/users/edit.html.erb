@@ -1,2 +1,8 @@
 <h1>Edit user</h1>
+<% if flash[:notice] %>
+    <%= flash[:notice] %>
+<% elsif flash[:errors] %>
+    <p><% flash[:errors].each do %></p>
+<%end %>
+<% end %>
 <%= render 'new_form' %>
