@@ -69,7 +69,7 @@ class ExhibitionsController < ApplicationController
     private
 
     def exhibition_params
-        params.require(:exhibition).permit(:title, :artist, :category, :gallery, :location, :date_end, :user_id)
+        params.require(:exhibition).permit(:title, :artist, :category, :gallery, :location, :date_end, :user_id, :picture)
     end
 
     def most_likes(array)

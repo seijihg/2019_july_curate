@@ -1,3 +1,4 @@
+<div class="field">
 <%= form_for @exhibition do |f| %>
     <%= f.label "Exhibition title" %>
     <%= f.text_field :title %><br>
@@ -11,6 +12,9 @@
     <%= f.select :location, options_for_select([["Select One", ""], "Central London", "North London", "South London", "East London", "West London"]) %><br>
     <%= f.label "Exhibition end date" %>
     <%= f.date_select :date_end, :order => [:day, :month, :year] %><br>
-    <%=f.hidden_field :user_id, value: current_user.id %>
+    <%= f.label :picture %>
+    <%= f.filestack_field :picture, 'Upload Your Exhibition photo' %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
     <%= f.submit %><br>
 <% end %>
+</div>

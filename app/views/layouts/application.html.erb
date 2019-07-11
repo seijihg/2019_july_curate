@@ -5,12 +5,17 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%= filestack_js_include_tag %>
+    <%= filestack_js_init_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans+Caption&display=swap" rel="stylesheet">
   </head>
 
   <body>
 <nav class="navigation">
+  <h1 class="logo">C.U.Rate</h1>
   <%= link_to('Home', index_path ) %>
   <%= link_to('About') %>
 
