@@ -25,7 +25,7 @@
               <%= filestack_image exhibition.picture, transform: filestack_transform.resize(width: 200, height: 200) %>
             </div><br>
             <% if current_user %>
-              <%= form_for @like, url: "like", method: 'post' do |f| %>
+              <%= form_for @like, url: "/like", method: 'post' do |f| %>
                 <%= f.hidden_field :exhibition_id, value: exhibition.id %>
                 <%= f.hidden_field :user_id, value: current_user.id %>
                 <%= f.submit "Like #{exhibition.likes_count}"%><br>

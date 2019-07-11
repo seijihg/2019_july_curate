@@ -7,7 +7,7 @@ class LikesController < ApplicationController
 
   def create_index
     like = Like.create(like_params)
-    redirect_to '/'
+    redirect_to exhibitions_path
   end
 
   private
