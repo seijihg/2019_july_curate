@@ -16,9 +16,13 @@
 
 * {
 box-sizing: border-box;
-background-color: lightgoldenrodyellow;
+background-color: white;
+font-family: 'PT Sans Caption', sans-serif;
 }
 
+.logo {
+  font-family: 'Permanent Marker', cursive;
+}
 
 .box-container {
   max-width: 1400px;
