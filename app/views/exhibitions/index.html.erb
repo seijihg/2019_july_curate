@@ -21,10 +21,13 @@
 <% exhibs.each do |exhibition| %>
     <div class="box"><%= link_to(exhibition.title, exhibition_path(exhibition)) %><br>
       <%= filestack_image exhibition.picture, transform: filestack_transform.resize(width: 200, height: 200) %>
+      <% if current_user %>
       <%= form_for @like, url: "like", method: 'post' do |f| %>
           <%= f.hidden_field :exhibition_id, value: exhibition.id %>
           <%= f.hidden_field :user_id, value: current_user.id %>
-          <%= f.submit "Like"%><%= exhibition.likes_count %><br>
+          <%= f.submit "Like"%>
+          <% end %>
+          <%= exhibition.likes_count %><br>
       <% end %>
     </div>
 <% end %>
