@@ -27,12 +27,25 @@
 
 <%= render 'comments/comment_form', comment: @comment %>
 <br>
-<h5>Exhibition comments:</h5><br>
-<% @exhibition.comments.each do |comment| %>
-  <%= comment.content %><br>
-  <%= comment.user_comment %>, commented at <%= comment.created_at %><br>
 
-  <% if current_user.user_name == comment.user_comment %>
-  <%= link_to("Edit comment", edit_comment_path(comment)) %>
+<h5>Exhibition comments:</h5><br>
+<% comms = most_comment_likes(@comments) %>
+  <% comms.each do |comment| %>
+    <%= comment.content %><br>
+    <%= comment.user_comment %>, commented at <%= comment.created_at %><br>
+
+      <% if current_user %>
+          <%= form_for @comment_like, url: "/comment_likes", method: 'post' do |f| %>
+            <%= f.hidden_field :comment_id, value: comment.id %>
+            <%= f.hidden_field :user_id, value: current_user.id %>
+            <%= f.submit "Like #{comment.comment_likes_count}"%><br>
+          <% end %>
+      <% end %>
+
+    <% if current_user.user_name == comment.user_comment %>
+      <%= link_to("Edit comment", edit_comment_path(comment)) %>
+    <% end %>
+    <br>
+    <br>
   <% end %>
-<% end %>
+  
