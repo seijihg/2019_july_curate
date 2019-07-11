@@ -15,7 +15,7 @@ class Exhibition < ApplicationRecord
 
   def self.filter(*args)
       args = args.first.select {|k, v| v != ""}
-      Exhibition.all.find_by(args)
+      Exhibition.all.where(args)
   end
 
   def self.locations
