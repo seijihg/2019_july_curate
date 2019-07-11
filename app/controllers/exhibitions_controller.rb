@@ -1,5 +1,6 @@
 class ExhibitionsController < ApplicationController
-    helper_method :most_likes
+    helper_method :most_likes, :most_comment_likes
+
 
 
     def index
@@ -29,8 +30,10 @@ class ExhibitionsController < ApplicationController
 
     def show
       @exhibition = Exhibition.find(params[:id])
+      @comments = @exhibition.comments
       @comment = Comment.new
       @like = Like.new
+      @comment_like = CommentLike.new
     end
 
     def new
@@ -79,5 +82,9 @@ class ExhibitionsController < ApplicationController
 
     def most_likes(array)
         array.sort_by { |exhibition| exhibition.likes.count}.reverse
+    end
+
+    def most_comment_likes(array)
+        array.sort_by { |comment| comment.comment_likes_count}.reverse
     end
 end
