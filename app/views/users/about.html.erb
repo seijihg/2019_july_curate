@@ -1,0 +1,10 @@
+<div class="title-container">
+  <h1>About C.U.Rate</h1>
+</div>
+
+  <p>C.U.Rate is an art focused social platform where users can rate exhibitions through comments and likes. Exhibitions are ordered by likes, most popular first so its easy to see what everyone is enjoying. Get your visual recommendations here!</p>
+
+  <h2>C.U.Rate stats</h2>
+
+  <h8>Current users:<%= User.all.count %></h8>
+  <h8>Top exhibition:<%= Exhibition.all.count.max %></h8>

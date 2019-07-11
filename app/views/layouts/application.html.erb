@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>Curate</title>
     <%= csrf_meta_tags %>
@@ -9,32 +9,53 @@
     <%= filestack_js_init_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale-1">
     <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=PT+Sans+Caption&display=swap" rel="stylesheet">
   </head>
 
+
   <body>
-<nav class="navigation">
-  <h1 class="logo">C.U.Rate</h1>
-  <%= link_to('Home', index_path ) %>
-  <%= link_to('About') %>
+    <header class="container">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <div id="logo">
+            <%= link_to("C.U.Rate", index_path, class: "navbar-brand") %>
+            </div>
+          </div>
 
-  <% if current_user %>
-    Logged in as <%= current_user.full_name %>.
-    <%= link_to "Profile", user_path(current_user) %>
-    <%= link_to "Add exhibition", new_exhibition_path %>
-    <%= link_to "Log Out", logout_path %>
-  <% else %>
-    <%= link_to "Sign Up", signup_path %> or
-    <%= link_to "Log In", login_path %>
-  <% end %>
+          <ul class="nav navbar-nav navbar-right">
+            <% if current_user %>
+              <li><%= link_to "Logged in as #{current_user.full_name}" %></li>
+              <li><%= link_to "About", about_path %></li>
+              <li><%= link_to "Profile", user_path(current_user) %></li>
+              <li><%= link_to "Add exhibition", new_exhibition_path %></li>
+              <li><%= link_to "Log Out", logout_path %></li>
+            <% else %>
+              <li><%= link_to('About') %></li>
+              <li><%= link_to "Sign Up", signup_path %></li>
+              <li><%= link_to "Log In", login_path %></li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+    </header>
 
-  <% if flash[:errors] %>
-    <% flash[:errors].each do |error| %>
-        <p class="error"><%= error %></p>
-    <% end %>
-  <% end %>
-
-  <%= yield %>
+    <section class="container">
+      <div id="flash">
+        <% if flash[:errors] %>
+          <% flash[:errors].each do |error| %>
+            <div class="error"><%= error %></div>
+          <% end %>
+        <% end %>
+      </div>
+      <%= yield %>
+    </section>
   </body>
+  <footer>
+    <div class="footer">
+      <h8>Created by Le and Louise</h8>
+    </div>
+  </footer>
 </html>

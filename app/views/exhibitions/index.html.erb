@@ -1,34 +1,39 @@
+<div class="title-container">
+  <h1>Exhibitions</h1>
+    <%= form_tag(index_path, method: "get") do %>
+      <%= label_tag "Gallery"%>
+      <%= select_tag "exhibition[gallery]", options_for_select(@galleries, @selected_gal), include_blank: true %>
+      <%= label_tag "Category"%>
+      <%= select_tag "exhibition[category]", options_for_select(@categories, @selected_cat), include_blank: true %>
+      <%= label_tag "Location"%>
+      <%= select_tag "exhibition[location]", options_for_select(@locations, @selected_loc), include_blank: true %>
 
-
-<h1>Exhibitions</h1>
-
-<div>
-<%= form_tag(index_path, method: "get") do %>
-    <%= label_tag "Gallery"%>
-    <%= select_tag "exhibition[gallery]", options_for_select(@galleries, @selected_gal), include_blank: true %>
-    <%= label_tag "Category"%>
-    <%= select_tag "exhibition[category]", options_for_select(@categories, @selected_cat), include_blank: true %>
-    <%= label_tag "Location"%>
-    <%= select_tag "exhibition[location]", options_for_select(@locations, @selected_loc), include_blank: true %>
-
-  <%= submit_tag("Filter") %>
-<% end %>
+    <%= submit_tag("Filter") %>
+  <% end %>
 </div>
 
 
-<div class="box-container">
-<% exhibs = most_likes(@exhibitions) %>
-<% exhibs.each do |exhibition| %>
-    <div class="box"><%= link_to(exhibition.title, exhibition_path(exhibition)) %><br>
-      <%= filestack_image exhibition.picture, transform: filestack_transform.resize(width: 200, height: 200) %>
-      <% if current_user %>
-      <%= form_for @like, url: "like", method: 'post' do |f| %>
-          <%= f.hidden_field :exhibition_id, value: exhibition.id %>
-          <%= f.hidden_field :user_id, value: current_user.id %>
-          <%= f.submit "Like"%>
-          <% end %>
-          <%= exhibition.likes_count %><br>
+<div class="exhibitions">
+  <% exhibs = most_likes(@exhibitions) %>
+    <% exhibs.each do |exhibition| %>
+      <div class="exhibition">
+        <div class="thumbnail">
+          <div class="text-center">
+          <div class="caption">
+            <h4><%= link_to exhibition.title, exhibition_path(exhibition) %></h4>
+            <div class ="img">
+              <%= filestack_image exhibition.picture, transform: filestack_transform.resize(width: 200, height: 200) %>
+            </div><br>
+            <% if current_user %>
+              <%= form_for @like, url: "like", method: 'post' do |f| %>
+                <%= f.hidden_field :exhibition_id, value: exhibition.id %>
+                <%= f.hidden_field :user_id, value: current_user.id %>
+                <%= f.submit "Like #{exhibition.likes_count}"%><br>
+              <% end %>
       <% end %>
-    </div>
-<% end %>
+          </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
 </div>
