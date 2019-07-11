@@ -1,0 +1,54 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+#logo a {
+  font-family: 'Permanent Marker', cursive;
+  color: black;
+  font-size: x-large;
+}
+
+.img {
+  border: 3px;
+}
+
+.title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+h1 {
+  margin: 0;
+}
+
+.center {
+  text-align: center;
+}
+
+* {
+background-color: white;
+font-family: 'PT Sans Caption', sans-serif;
+}
+
+.exhibitions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  background-color: white;
+}
+
+.exhibition {
+  width: 30%;
+  min-width: 300px;
+  background-color: white;
+}
+
+.footer {
+  border: 50px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: black;
+  text-align: center;
+}

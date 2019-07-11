@@ -2,6 +2,8 @@ class Exhibition < ApplicationRecord
   belongs_to :user
   has_many :likes
   has_many :comments
+  validates :title, :artist, :category, :gallery, :location, :date_end, :user_id, presence: true
+  validates :title, uniqueness: true
 
   def likes_count
     self.likes.count

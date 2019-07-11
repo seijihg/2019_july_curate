@@ -1,12 +1,13 @@
 class ExhibitionsController < ApplicationController
     helper_method :most_likes
 
+
     def index
         if !params[:exhibition].nil?
             if params[:exhibition].each {|hash| hash}.all? {|k, v| v == ""}
                 @exhibitions = Exhibition.all
             else
-                @exhibitions = Exhibition.filter(exhibition_params(:title, :category, :location))
+                @exhibitions = Exhibition.filter(spec_params(:gallery, :category, :location))
                 @exhibitions = @exhibitions.nil? ? @exhibitions = Exhibition.all : @exhibitions
                 if !@exhibitions.kind_of?(Array)
                     empty = []
@@ -17,9 +18,9 @@ class ExhibitionsController < ApplicationController
         else
             @exhibitions = Exhibition.all
         end
-        @locations = Exhibition.locations
-        @galleries = Exhibition.galleries
-        @categories = Exhibition.categories
+        @locations = Exhibition.locations.uniq
+        @galleries = Exhibition.galleries.uniq
+        @categories = Exhibition.categories.uniq
         @selected_loc = params[:exhibition].nil? ? "" : params[:exhibition][:location]
         @selected_cat = params[:exhibition].nil? ? "" : params[:exhibition][:category]
         @selected_gal = params[:exhibition].nil? ? "" : params[:exhibition][:gallery]
@@ -67,6 +68,10 @@ class ExhibitionsController < ApplicationController
 
 
     private
+
+    def spec_params(*args)
+        params.require(:exhibition).permit(args)
+    end
 
     def exhibition_params
         params.require(:exhibition).permit(:title, :artist, :category, :gallery, :location, :date_end, :user_id, :picture)

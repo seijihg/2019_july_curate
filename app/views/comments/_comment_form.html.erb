@@ -1,6 +1,6 @@
-<%= form_for @comment, url: "exhibitions/#{@exhibition_id}/comments", action: 'post' do |f| %>
+<%= form_for @comment, url: "/exhibitions/#{@exhibition.id}/comments", action: 'post' do |f| %>
     <%= f.label "Add your comment here:" %><br>
-    <%= f.text_area :content %><br>
+    <%= f.text_area :content, class: "form-control" %><br>
     <%= f.hidden_field :exhibition_id, value: @exhibition.id %>
     <%= f.hidden_field :user_comment, value: current_user.user_name %>
 

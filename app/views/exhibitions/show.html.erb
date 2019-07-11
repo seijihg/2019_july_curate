@@ -1,38 +1,38 @@
-<h2><%= @exhibition.title %>, <%= @exhibition.artist %> </h2>
-<p><%= @exhibition.gallery %>, <%= @exhibition.location %> </p>
-<p>Exhibition ends: <%= @exhibition.date_end %></p>
-<p><%= @exhibition.category %></p>
+<div class="center">
+  <h2><%= @exhibition.title %>, <%= @exhibition.artist %> </h2>
+  <p><%= @exhibition.gallery %>, <%= @exhibition.location %> </p>
+  <p>Exhibition ends: <%= localize(@exhibition.date_end) %></p>
+  <p><%= @exhibition.category %></p>
 
 
-<p>
-  <%= filestack_image @exhibition.picture, transform: filestack_transform.resize(width: 300, height: 300) %>
-</p>
+  <p>
+    <%= filestack_image @exhibition.picture, transform: filestack_transform.resize(width: 300, height: 300) %>
+  </p>
 
-<% if current_user %>
-<% if current_user.id == @exhibition.user_id %>
-<%= link_to("Edit exhibition", edit_exhibition_path(@exhibition)) %>
-<% end %>
-<% end %>
+  <% if current_user %>
+  <% if current_user.id == @exhibition.user_id %>
+  <%= link_to("Edit exhibition", edit_exhibition_path(@exhibition)) %>
+  <% end %>
+  <% end %>
 
-<%= form_for @like do |f| %>
-    <%= f.hidden_field :exhibition_id, value: @exhibition.id %>
-    <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= form_for @like do |f| %>
+      <%= f.hidden_field :exhibition_id, value: @exhibition.id %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
 
-    <%= f.submit "Like"%><br>
-<% end %>
-<h4>Likes:<%= @exhibition.likes_count %> </h4>
+      <%= f.submit "Like #{@exhibition.likes_count}"%><br>
+  <% end %>
 
-<h4>Exhibition comments</h4>
+  <br>
+</div>
+
 <%= render 'comments/comment_form', comment: @comment %>
-
-<p>Exhibition comments:</p><br>
-<% @exhibition.comments.each do |comment| %>
 <br>
+<h5>Exhibition comments:</h5><br>
+<% @exhibition.comments.each do |comment| %>
+  <%= comment.content %><br>
+  <%= comment.user_comment %>, commented at <%= comment.created_at %><br>
 
-<%= comment.content %><br>
-<%= comment.user_comment %>, commented at <%= comment.created_at %><br>
-
-<% if current_user.user_name == comment.user_comment %>
-<%= link_to("Edit comment", edit_comment_path(comment)) %>
-<% end %>
+  <% if current_user.user_name == comment.user_comment %>
+  <%= link_to("Edit comment", edit_comment_path(comment)) %>
+  <% end %>
 <% end %>
