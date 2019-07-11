@@ -6,5 +6,8 @@
 
   <h2>C.U.Rate stats</h2>
 
-  <h8>Current users:<%= User.all.count %></h8>
-  <h8>Top exhibition:<%= Exhibition.all.count.max %></h8>
+  <h8>Current number of users: <%= User.all.count %></h8><br>
+  <br>
+  <h8><%= "The Top exhibition is currently #{Exhibition.most_liked.title} which has #{Exhibition.most_liked.likes.count} likes!" %></h8><br>
+  
+  <%= filestack_image Exhibition.most_liked.picture, transform: filestack_transform.resize(width: 200, height: 200) %>
