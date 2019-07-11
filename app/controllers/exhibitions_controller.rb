@@ -10,11 +10,6 @@ class ExhibitionsController < ApplicationController
             else
                 @exhibitions = Exhibition.filter(spec_params(:gallery, :category, :location))
                 @exhibitions = @exhibitions.nil? ? @exhibitions = Exhibition.all : @exhibitions
-                if !@exhibitions.kind_of?(Array)
-                    empty = []
-                    empty << @exhibitions
-                    @exhibitions = empty
-                end
             end
         else
             @exhibitions = Exhibition.all
