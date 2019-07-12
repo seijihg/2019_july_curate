@@ -9,7 +9,11 @@ class ExhibitionsController < ApplicationController
                 @exhibitions = Exhibition.all
             else
                 @exhibitions = Exhibition.filter(spec_params(:gallery, :category, :location))
-                @exhibitions = @exhibitions.nil? ? @exhibitions = Exhibition.all : @exhibitions
+                @exhibitions = if @exhibitions.empty?
+                  flash[:notice] = "This search has no exhibitions, please try again."
+                else
+                  @exhibitions
+                end
             end
         else
             @exhibitions = Exhibition.all

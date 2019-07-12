@@ -27,7 +27,6 @@ h1 {
 }
 
 * {
-background-color: white;
 font-family: 'PT Sans Caption', sans-serif;
 }
 
@@ -44,6 +43,15 @@ font-family: 'PT Sans Caption', sans-serif;
   background-color: white;
 }
 
+.right {
+  float: right;
+}
+
+// .body {
+//   min-height: 100%;
+//   position: relative;
+// }
+
 .footer {
   border: 50px;
   left: 0;
@@ -51,4 +59,5 @@ font-family: 'PT Sans Caption', sans-serif;
   width: 100%;
   color: black;
   text-align: center;
+  // position: absolute;
 }

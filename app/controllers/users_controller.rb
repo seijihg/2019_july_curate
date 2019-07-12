@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     before_action :require_login
-    skip_before_action :require_login, only: [:new]
+    skip_before_action :require_login, only: [:new, :create]
 
     def new
         @user = User.new
@@ -26,7 +26,6 @@ class UsersController < ApplicationController
     end
 
     def update
-        binding.pry
         @user = User.find(params[:id])
         if @user.update(user_params)
             flash[:notice] = "Profile successfuly updated"
