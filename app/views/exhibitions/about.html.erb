@@ -1,0 +1,27 @@
+<div class="title-container">
+  <h2>About C.U.Rate</h2>
+</div>
+
+  <p>C.U.Rate is an art focused social platform where users can rate exhibitions through comments and likes. Exhibitions are ordered most popular first so it's easy to see what everyone is enjoying. Get your visual recommendations here! Exhibitions curated by popular demand!</p>
+
+  <h2>C.U.Rate stats</h2>
+  <div class="right">
+    <div class="exhibition">
+      <div class="thumbnail">
+        <div class="text-center">
+          <div class="caption">
+            <h4>Current top exhibition:</h4>
+            <h4><%= link_to Exhibition.most_liked.title, exhibition_path(Exhibition.most_liked) %></h4>
+            <%= filestack_image Exhibition.most_liked.picture, transform: filestack_transform.resize(width: 200, height: 200) %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<ul>
+  <br>
+  <li><h4>The current number of users on C.U.Rate is <%= User.all.count %>.</h4></li>
+  <li><h4>The average total number of likes on C.U.Rate is <%= Exhibition.total_average_likes %>!</h4></li>
+  <li><h4><%= "The area with the most C.U.Rate listed exhibitions taking place is #{Exhibition.most_occurring_location}, which currently has #{(Exhibition.exhib_count)} listed exhibitions." %></h4></li>
+  <li><h4><%= "The most popular exhibition is currently #{Exhibition.most_liked.title} in #{Exhibition.most_liked.location}, with #{Exhibition.most_liked.likes.count} likes!" %></h4></li>
+</ul>

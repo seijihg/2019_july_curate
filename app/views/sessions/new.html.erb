@@ -1,18 +1,23 @@
 <h1>Login</h1>
-<%= form_tag sessions_path do %>
-    <p>
-    <% if flash[:notice] %>
-        <%= flash[:notice] %>
-    <% elsif flash[:alert] %>
-        <%= flash[:alert] %>
-    <% end %>
-    </p>
-    <div>
-    <%= label_tag :user_name %>
-    <%= text_field_tag :user_name %>
-    <%= label_tag :password %>
-    <%= password_field_tag :password %>
 
-    <%= submit_tag "Login" %>
-    </div>
-<% end %>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <%= form_tag sessions_path do %>
+        <p>
+        <% if flash[:notice] %>
+            <%= flash[:notice] %>
+        <% elsif flash[:alert] %>
+            <%= flash[:alert] %>
+        <% end %>
+        </p>
+        <div>
+        <%= label_tag :user_name %>
+        <%= text_field_tag :user_name %>
+        <%= label_tag :password %>
+        <%= password_field_tag :password %>
+
+        <%= submit_tag "Login", class: "btn btn-primary" %>
+        </div>
+    <% end %>
+  </div>
+</div>

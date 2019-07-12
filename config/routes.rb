@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get "/", to: "exhibitions#index", as: "index"
-  get "about", to: "users#about", as: "about"
+  get "about", to: "exhibitions#about", as: "about"
   get "signup", to: "users#new", as: "signup"
   get "login", to: "sessions#new", as: "login"
   post "login", to: "sessions#create"

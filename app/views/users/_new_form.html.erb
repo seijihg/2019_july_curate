@@ -1,14 +1,18 @@
-<%= form_for @user do |f| %>
-    <%= f.label "First Name" %>
-    <%= f.text_field :first_name %>
-    <%= f.label "Last Name" %>
-    <%= f.text_field :last_name %>
-    <%= f.label "User Name" %>
-    <%= f.text_field :user_name %>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <%= form_for @user do |f| %>
+        <%= f.label "First name" %>
+        <%= f.text_field :first_name, class: "form-control" %>
+        <%= f.label "Last name" %>
+        <%= f.text_field :last_name, class: "form-control" %>
+        <%= f.label "User name" %>
+        <%= f.text_field :user_name, class: "form-control" %>
+        <%= f.label :password %>
+        <%= f.password_field :password, class: "form-control" %>
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, class: "form-control" %>
 
-    <%= f.submit "Sign up"%>
-<% end %>
+        <%= f.submit "Sign up", class: "btn btn-primary"%>
+    <% end %>
+  </div>
+</div>
