@@ -1,10 +1,23 @@
-<h1>Log in here:</h1>
-<%= form_for(:session, url: login_path) do |f| %>
-    <%= f.label :user_name %>
-    <%= f.text_field :user_name %>
+<h1>Login</h1>
 
-    <%= f.label :password %>
-    <%= f.password_field :password %>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <%= form_tag sessions_path do %>
+        <p>
+        <% if flash[:notice] %>
+            <%= flash[:notice] %>
+        <% elsif flash[:alert] %>
+            <%= flash[:alert] %>
+        <% end %>
+        </p>
+        <div>
+        <%= label_tag :user_name %>
+        <%= text_field_tag :user_name %>
+        <%= label_tag :password %>
+        <%= password_field_tag :password %>
 
-    <%= f.submit "Login" %>
-<% end %>
+        <%= submit_tag "Login", class: "btn btn-primary" %>
+        </div>
+    <% end %>
+  </div>
+</div>

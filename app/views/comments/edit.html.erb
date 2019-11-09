@@ -1,0 +1,11 @@
+<%= form_for @comment do |f| %>
+    <%= f.label "Edit your comment here:" %><br>
+    <%= f.text_area :content %><br>
+    <%= f.hidden_field :exhibition_id, value: @exhibition.id %>
+
+    <%= f.submit %><br>
+<% end %>
+
+<%= form_tag "/comments/#{@comment.id}", method: "delete" do %>
+  <%= submit_tag "Delete comment" %>
+<% end %>

@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+    before_action :require_login
+    skip_before_action :require_login, only: [:new, :create]
 
     def show
       @user = User.find(params[:id])
@@ -19,21 +21,31 @@ class UsersController < ApplicationController
         end
     end
 
+    def show
+        @user = User.find(params[:id])
+    end
+
     def edit
-      @user = User.find(params[:id])
+        @user = User.find(params[:id])
     end
 
     def update
-      @user = User.find(params[:id])
-        if @user.update_attributes(user_params)
-          @user.update(user_params)
-          redirect_to user_path
+        @user = User.find(params[:id])
+        if @user.update(user_params)
+            flash[:notice] = "Profile successfuly updated"
+            redirect_to @user
         else
-          render :new
+            flash[:errors] = @user.errors.full_messages
+            render "edit"
         end
     end
+  
 
     private
+
+    def require_login
+        return head(:forbidden) unless session.include? :user_id
+    end
 
     def user_params
         params.require(:user).permit(:first_name, :last_name, :user_name, :password, :password_confirmation)
