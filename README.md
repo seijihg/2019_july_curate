@@ -56,4 +56,4 @@ Visit localhost:3000.
 
 ## Notes
 
-This app is a paired programming project created by [Le H Ngo](https://github.com/seijihg "Le H Ngo") and [Louise Norris](https://github.com/louisenorris "Louise Norris").
+This app is a paired programming project, entirely built with Ruby On Rails, created by [Le H Ngo](https://github.com/seijihg "Le H Ngo") and [Louise Norris](https://github.com/louisenorris "Louise Norris").
