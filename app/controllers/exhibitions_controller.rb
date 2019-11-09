@@ -1,8 +1,6 @@
 class ExhibitionsController < ApplicationController
     helper_method :most_likes, :most_comment_likes
 
-
-
     def index
         if !params[:exhibition].nil?
             if params[:exhibition].each {|hash| hash}.all? {|k, v| v == ""}
